@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Dashboard Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta name="theme-color" content="#1FB8CD">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header__content">
+            <div class="header__left">
+                <button class="hamburger" id="hamburgerBtn" aria-label="Toggle Menu">
+                    <span class="hamburger__line"></span>
+                    <span class="hamburger__line"></span>
+                    <span class="hamburger__line"></span>
+                </button>
+                <div class="logo">
+                    <h2>Portfolio Pro</h2>
+                </div>
+            </div>
+            
+            <div class="header__center">
+                <div class="search-container">
+                    <input type="text" placeholder="Search stocks, crypto, news..." class="search-input">
+                    <button class="voice-search-btn" aria-label="Voice Search">🎤</button>
+                </div>
+            </div>
+            
+            <div class="header__right">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+                    <span class="theme-toggle__sun">☀️</span>
+                    <span class="theme-toggle__moon">🌙</span>
+                </button>
+                <div class="profile-avatar">JS</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar__nav">
+            <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">Dashboard</span>
+            </a>
+            <a href="#trading" class="nav-item" data-section="trading">
+                <span class="nav-icon">📈</span>
+                <span class="nav-text">Trading</span>
+            </a>
+            <a href="#analytics" class="nav-item" data-section="analytics">
+                <span class="nav-icon">🔍</span>
+                <span class="nav-text">Analytics</span>
+            </a>
+            <a href="#team" class="nav-item" data-section="team">
+                <span class="nav-icon">👥</span>
+                <span class="nav-text">Team</span>
+            </a>
+            <a href="#news" class="nav-item" data-section="news">
+                <span class="nav-icon">📰</span>
+                <span class="nav-text">News</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Dashboard Section -->
+        <section class="section active" id="dashboard">
+            <div class="section-header">
+                <h1>Dashboard</h1>
+                <p class="section-subtitle">Welcome back! Here's your portfolio overview</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Portfolio Overview Cards -->
+                <div class="card glass-card portfolio-card">
+                    <div class="card__body">
+                        <h3>Total Portfolio Value</h3>
+                        <div class="portfolio-value" id="portfolioValue">$0.00</div>
+                        <div class="portfolio-change positive" id="portfolioChange">
+                            <span class="change-amount">+$0.00</span>
+                            <span class="change-percent">(+0.00%)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card glass-card">
+                    <div class="card__body">
+                        <h3>Total Return</h3>
+                        <div class="metric-value" id="totalReturn">$0.00</div>
+                        <div class="metric-change positive">+25.42%</div>
+                    </div>
+                </div>
+
+                <!-- Market Ticker -->
+                <div class="market-ticker">
+                    <div class="ticker-content" id="marketTicker">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Portfolio Allocation Chart -->
+                <div class="card glass-card chart-card">
+                    <div class="card__body">
+                        <h3>Portfolio Allocation</h3>
+                        <div style="height: 300px;">
+                            <canvas id="allocationChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Chart -->
+                <div class="card glass-card chart-card">
+                    <div class="card__body">
+                        <h3>Performance Overview</h3>
+                        <div style="height: 300px;">
+                            <canvas id="performanceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trading Section -->
+        <section class="section" id="trading">
+            <div class="section-header">
+                <h1>Trading</h1>
+                <p class="section-subtitle">Live market data and trading interface</p>
+            </div>
+
+            <div class="trading-grid">
+                <div class="card glass-card">
+                    <div class="card__body">
+                        <h3>Market Watchlist</h3>
+                        <div class="watchlist" id="watchlist">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card glass-card">
+                    <div class="card__body">
+                        <h3>Quick Trade</h3>
+                        <div class="trading-form">
+                            <input type="text" placeholder="Symbol (e.g., AAPL)" class="form-control">
+                            <input type="number" placeholder="Quantity" class="form-control">
+                            <div class="btn-group">
+                                <button class="btn btn--primary">Buy</button>
+                                <button class="btn btn--outline">Sell</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section class="section" id="analytics">
+            <div class="section-header">
+                <h1>Analytics</h1>
+                <p class="section-subtitle">AI-powered market analysis and insights</p>
+            </div>
+
+            <div class="analytics-grid">
+                <div class="card glass-card">
+                    <div class="card__body">
+                        <h3>AI Market Sentiment</h3>
+                        <div class="sentiment-indicator">
+                            <div class="sentiment-gauge" id="sentimentGauge"></div>
+                            <p class="sentiment-text">Market sentiment is <strong>Bullish</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card glass-card chart-card">
+                    <div class="card__body">
+                        <h3>Market Trends</h3>
+                        <div style="height: 300px;">
+                            <canvas id="trendsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="section" id="team">
+            <div class="section-header">
+                <h1>Our Team</h1>
+                <p class="section-subtitle">Meet the experts behind your portfolio</p>
+            </div>
+
+            <div class="team-grid" id="teamGrid">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section class="section" id="news">
+            <div class="section-header">
+                <h1>Market News</h1>
+                <p class="section-subtitle">Stay updated with the latest market developments</p>
+            </div>
+
+            <div class="news-feed" id="newsFeed">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating Action Button -->
+    <button class="fab" id="chatbotFab" aria-label="Open AI Chat">
+        <span class="fab-icon">🤖</span>
+    </button>
+
+    <!-- AI Chatbot Modal -->
+    <div class="modal" id="chatbotModal">
+        <div class="modal__content glass-card">
+            <div class="modal__header">
+                <h3>AI Assistant</h3>
+                <button class="modal__close" id="closeChatbot">&times;</button>
+            </div>
+            <div class="modal__body">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="chat-message bot-message">
+                        <p>Hello! I'm your AI trading assistant. How can I help you today?</p>
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" placeholder="Ask me anything about your portfolio..." class="form-control" id="chatInput">
+                    <button class="btn btn--primary" id="sendChat">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+        <p>Loading your portfolio...</p>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
